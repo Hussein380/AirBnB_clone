@@ -107,3 +107,24 @@ def do_create(self, arg):
         new_instance = eval(args_list[0])()
         print(new_instance.id)
         storage.save()
+
+
+def do_show(self, arg):
+    """ Display the string representation of a class instance with
+    given ID
+    """
+    args_list = parse(arg)
+    obj_dict = storage.all()
+
+    if not args_list:
+        print("** class name missing **")
+    elif args_list[0] not in HBNBCommand.__classes:
+        print("** class doesn't exist **")
+    elif len(args_list) < 2:
+        print("** instance id missing **")
+    else:
+        instance_key = "{}.{}".format(args_list[0], args_list[1])
+        if instance_key not in obj_dict:
+            print("** no instance found **")
+        else:
+            print(obj_dict[instance_key])
