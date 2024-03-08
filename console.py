@@ -93,3 +93,17 @@ def do_EOF(self, arg):
     """ Handle EOF signal to exit the program"""
     print("")
     return True
+
+
+def do_create(self, arg):
+    """ Create a new instance of a specified class and print its ID."""
+    args_list = parse(arg)
+
+    if not args_list:
+        print("** class name missing **")
+    elif args_list[0] not in HBNBCommand.__classes:
+        print("** class doesn't exist **")
+    else:
+        new_instance = eval(args_list[0])()
+        print(new_instance.id)
+        storage.save()
