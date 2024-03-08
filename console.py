@@ -82,3 +82,8 @@ def default(self, arg):
 
     print("*** Unknown syntax: {}".format(arg))
     return False
+
+
+def do_quit(self, arg):
+    """ quit command to exit the program."""
+    return True
