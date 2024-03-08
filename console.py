@@ -170,3 +170,63 @@ def do_count(self, arg):
         if args_list[0] == obj.__class__.__name__:
             count += 1
     print(count)
+
+def do_update(self, arg):
+    """ Update a class instance with specified Id"""
+
+    args_list = parse(arg)
+    obj_dict = storage.all()
+
+    if len(args_list) == 0:
+        print("** class name missing **")
+        return False
+
+    if args_list[0] not in HBNBCommand.__classes:
+        print("** class doesn't exist **")
+        return False
+
+    if len(args_list) == 1:
+        print("** instance id missing **")
+        return False
+
+    if "{}.{}".format(args_list[0], args_list[1]) not in obj_dict.keys():
+        print("** no instance found **")
+        return False
+
+    if len(args_list) == 2:
+        print("** attribute name missing **")
+        return False
+
+    if len(args_list) == 3:
+        try:
+            type(eval(args_list[2])) != dict
+        except NameError:
+            print("** attribute name missing **")
+            return False
+
+    if len(args_list) == 3:
+        try:
+            type(eval(args_list[2])) != dict
+        except NameError:
+            print("** value missing **")
+            return False
+    if len(args_list) == 4:
+        obj = obj_dict["{}.{}".format(args_list[0], args_list[1])]
+        if args_list[2] in obj.__class__.__dict__.keys():
+            valtype = type(obj.__class__dict__[args_list[2]])
+            obj.__dict__[args_list[2]] = args_list
+        else:
+            obj.__dict__[args_list[2]] = args_list[3]
+    elif type(eval(args_list[2])) == dict:
+        obj = obj_dict["{}.{}".format(args_list[0], args_list[1])]
+        for k, v in eval(args_list[2]).items():
+            if (k in obj.__class__.__dict__.keys() and
+                    type(obj.__class__.__dict__[k]) in {str, int, float}):
+                valtype = type(obj.__class__.__dict__[k])
+                obj.__dict__[k] = valtype(v)
+            else:
+                obj.__dict__[k] = v
+    storage.save()
+
+if __name__ = "__main__":
+    HBNBCommand().cmdloop()
