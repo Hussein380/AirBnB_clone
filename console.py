@@ -128,3 +128,23 @@ def do_show(self, arg):
             print("** no instance found **")
         else:
             print(obj_dict[instance_key])
+
+
+def do_destroy(self, arg):
+    """ Delete a class instance with specified ID """
+    args_list = parse(arg)
+    obj_dict = storage.all()
+
+    if not args_list:
+        print("** class name missing **")
+    elif args_list[0] not in HBNBCommand.__classes:
+        print("** class doesn't exist **")
+    elif len(args_list) < 2:
+        print("** instance id missing **")
+    else:
+        instance_key = "{}.{}".format(args_list[0], args_list[1])
+        if instance_key not in obj_dict:
+            print("** no instance found **")
+        else:
+            del obj_dict[instance_key]
+            storage.save()
