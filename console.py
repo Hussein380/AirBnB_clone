@@ -57,3 +57,28 @@ class HBNBCommand(cmd.Cmd):
 def emptyline(self):
     """ Do nothing upon receiving an empty line """
     pass
+
+
+def default(self, arg):
+    """Handle default behavior for cmd module when input is invalid """
+    command_mappings = {
+            "all": self.do_all,
+            "show": self.do_show,
+            "destroy": self.do_destroy,
+            "count": self.do_count,
+            "update": self.do_update
+    }
+
+    dot_match = re.search(r"\.", arg)
+    if dot_match is not None:
+        arg_list = [arg[:dot_match.span()[0]], arg[dot_match.span()[1]:]]
+        bracket_match = re.search(r"\((.*?)\)", arg_list[1])
+        if bracket_match is not None:
+            command_args = [arg_list[1][:bracket_match.span()[0]],
+                            bracket_match.group()[1:-1]]
+            if command_args[0] in command_mappings.keys():
+                command_call = "{} {}".format(arg_list[0], command_args[1])
+                return command_mappings[command_args[0]](command_call)
+
+    print("*** Unknown syntax: {}".format(arg))
+    return False
