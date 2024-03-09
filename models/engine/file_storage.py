@@ -13,7 +13,7 @@ from models.review import Review
 class FileStorage:
     """Represent an abstracted storage systems
 
-    Attributes;
+    Attributes:
         __file_path (str): The name of the file to save objects to
         __objects (dict): A dictionary of instantiated objects.
 
@@ -27,26 +27,25 @@ class FileStorage:
 
     def new(self, obj):
         """Add a new objects to __objects."""
-        obj_key = "{} {}".format(type(obj).__name__, obj.id)
-        FileStorage.__objects[obj_key] = obj
+        oclass_name = obj.__class__.__name__
+        FileStorage.__objects["{}.{}".format(oclass_name, obj.id)] = obj
 
     def save(self):
         """Serialize __objects to the JSON file """
-        serialize_objects = {
-                key: obj.to_dict() for key, obj in
-                FileStorage.__objects.items()
-        }
+        odict = FileStorage.__objects
+        obj_dict = {obj: odict[obj].to_dict() for obj in odict.keys()}
         with open(FileStorage.__file_path, "w") as file:
-            json.dump(serialize_objects, file)
+            json.dump(obj_dict, file)
 
     def reload(self):
         """Deserialize the JSON file to __objects, if it exists """
         try:
             with open(FileStorage.__file_path) as file:
-                serialized_objects = json.load(file)
-                for key, obj in serialized_objects.items():
-                    class_name = obj["__class__"]
-                    del obj["__class__"]
-                    self.new(eval(class_name)(**obj))
+                obj_dict = json.load(file)
+                keys_to_delete = []
+                for o in obj_dict.values():
+                    class_name = o["__class__"]
+                    del o["__class__"]
+                    self.new(eval(class_name) (**o))
         except FileNotFoundError:
             return
