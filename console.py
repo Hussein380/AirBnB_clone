@@ -71,13 +71,13 @@ def default(self, arg):
 
     dot_match = re.search(r"\.", arg)
     if dot_match is not None:
-        arg_list = [arg[:dot_match.span()[0]], arg[dot_match.span()[1]:]]
-        bracket_match = re.search(r"\((.*?)\)", arg_list[1])
+        args_list = [arg[:dot_match.span()[0]], arg[dot_match.span()[1]:]]
+        bracket_match = re.search(r"\((.*?)\)", args_list[1])
         if bracket_match is not None:
-            command_args = [arg_list[1][:bracket_match.span()[0]],
+            command_args = [args_list[1][:bracket_match.span()[0]],
                             bracket_match.group()[1:-1]]
             if command_args[0] in command_mappings.keys():
-                command_call = "{} {}".format(arg_list[0], command_args[1])
+                command_call = "{} {}".format(args_list[0], command_args[1])
                 return command_mappings[command_args[0]](command_call)
 
     print("*** Unknown syntax: {}".format(arg))
@@ -124,7 +124,7 @@ def do_show(self, arg):
     elif "{}.{}".format(args_list[0], args_list[1]) not in obj_dict:
         print("** no instance found **")
     else:
-        print(obj_dict["{}.{}".format(argl[0], argl[1])])
+        print(obj_dict["{}.{}".format(args_list[0], args_list[1])])
 
 
 def do_destroy(self, arg):
@@ -138,10 +138,10 @@ def do_destroy(self, arg):
         print("** class doesn't exist **")
     elif len(args_list) == 1:
         print("** instance id missing **")
-    elif "{}.{}".format(args_list[0], args_list[1] not in obj_dixt.keys()):
+    elif "{}.{}".format(args_list[0], args_list[1] not in obj_dict.keys()):
         print("** no instance found **")
     else:
-        del obj_dict["{}.{}".format(argl[0], argl[1])]
+        del obj_dict["{}.{}".format(args_list[0], args_list[1])]
         storage.save()
 
 
@@ -170,6 +170,7 @@ def do_count(self, arg):
         if args_list[0] == obj.__class__.__name__:
             count += 1
     print(count)
+
 
 def do_update(self, arg):
     """ Update a class instance with specified Id"""
@@ -203,18 +204,11 @@ def do_update(self, arg):
         except NameError:
             print("** attribute name missing **")
             return False
-
-    if len(args_list) == 3:
-        try:
-            type(eval(args_list[2])) != dict
-        except NameError:
-            print("** value missing **")
-            return False
     if len(args_list) == 4:
         obj = obj_dict["{}.{}".format(args_list[0], args_list[1])]
         if args_list[2] in obj.__class__.__dict__.keys():
-            valtype = type(obj.__class__dict__[args_list[2]])
-            obj.__dict__[args_list[2]] = args_list
+            valtype = type(obj.__class__.__dict__[args_list[2]])
+            obj.__dict__[args_list[2]] = valtype(args_list[3])
         else:
             obj.__dict__[args_list[2]] = args_list[3]
     elif type(eval(args_list[2])) == dict:
@@ -228,5 +222,6 @@ def do_update(self, arg):
                 obj.__dict__[k] = v
     storage.save()
 
-if __name__ = "__main__":
+
+if __name__ == "__main__":
     HBNBCommand().cmdloop()
