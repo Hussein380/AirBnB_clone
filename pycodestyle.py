@@ -6,3 +6,5 @@ def swap_numbers(a, b):
     a = b
     b = temp
     return (a, b)
+
+print(swap_numbers(2,5))
