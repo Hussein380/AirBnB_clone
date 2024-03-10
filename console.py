@@ -148,7 +148,8 @@ class HBNBCommand(cmd.Cmd):
         else:
             obj_list = []
             for obj in storage.all().values():
-                if len(args_list) > 0 and args_list[0] == obj.__class__.__name__:
+                if len(args_list) > 0 and \
+                        args_list[0] == obj.__class__.__name__:
                     obj_list.append(obj.__str__())
                 elif not len(args_list) == 0:
                     obj_list.append(obj.__str__())
@@ -213,5 +214,6 @@ class HBNBCommand(cmd.Cmd):
                     obj.__dict__[k] = v
         storage.save()
 
+
 if __name__ == "__main__":
-        HBNBCommand().cmdloop()
+    HBNBCommand().cmdloop()
