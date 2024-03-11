@@ -7,4 +7,5 @@ def swap_numbers(a, b):
     b = temp
     return (a, b)
 
-print(swap_numbers(2,5))
+
+print(swap_numbers(2, 5))
