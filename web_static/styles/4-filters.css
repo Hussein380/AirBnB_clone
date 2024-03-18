@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 .filters {
+=======
+.filters{
+>>>>>>> 2cbc8c38a177df6a6dee71969054284f5fe0ede2
     background-color: white;
     height: 70px;
     width: 100%;
@@ -11,10 +15,17 @@
 
 }
 
+<<<<<<< HEAD
 section.filters button {
     font-size: 18px;
     color: white;
     background-color: #FF5A5F;
+=======
+section.filters button{
+    font-size: 18px;
+    color: white;
+    background-color:  #FF5A5F;
+>>>>>>> 2cbc8c38a177df6a6dee71969054284f5fe0ede2
     height: 48px;
     border: 0px;
     border-radius: 4px;
@@ -23,6 +34,10 @@ section.filters button {
     opacity: 1;
 }
 
+<<<<<<< HEAD
 section.filters button:hover {
+=======
+section.filters button:hover{
+>>>>>>> 2cbc8c38a177df6a6dee71969054284f5fe0ede2
     opacity: 0.9;
 }
