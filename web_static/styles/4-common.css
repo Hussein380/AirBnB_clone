@@ -1,23 +1,13 @@
-<<<<<<< HEAD
-body {
-=======
+
 body{
->>>>>>> 2cbc8c38a177df6a6dee71969054284f5fe0ede2
     margin: 0;
     padding: 0;
     color: #484848;
     font-size: 14px;
-<<<<<<< HEAD
     font-family: Circular, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-.container {
-=======
-    font-family:  Circular, "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-
 .container{
->>>>>>> 2cbc8c38a177df6a6dee71969054284f5fe0ede2
     margin: auto;
     max-width: 1000px;
     margin-top: 30px;
