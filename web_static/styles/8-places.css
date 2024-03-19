@@ -1,21 +1,25 @@
-.places{
+.places {
     display: flex;
     flex-direction: column;
     padding-left: 30px;
 }
-.places h1{
+
+.places h1 {
     font-size: 30px;
 }
-.places_title{
+
+.places_title {
     padding-top: 30px;
     margin-bottom: -25px;
 }
-.articles{
+
+.articles {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
-article{
+
+article {
     width: 390px;
     margin: 20px;
     padding: 20px;
@@ -29,15 +33,18 @@ article{
     padding-bottom: 30px;
     position: relative;
 }
-article h2{
+
+article h2 {
     font-size: 30px;
     margin-top: -1px;
     padding-left: 0%;
 }
-.article_title{
+
+.article_title {
     width: 100%;
 }
-.price_by_night{
+
+.price_by_night {
     color: #FF5A5F;
     border: 4px solid #FF5A5F;
     min-width: 60px;
@@ -53,85 +60,98 @@ article h2{
     right: 20px;
     margin-top: -5px;
 }
-.price{
+
+.price {
     margin-top: -1px;
 }
-.price_title{
+
+.price_title {
     display: flex;
 }
-.information{
-    height:80px;
+
+.information {
+    height: 80px;
     border-top: solid #DDDDDD 1px;
     border-bottom: solid #DDDDDD 1px;
     display: flex;
     flex-direction: row;
     justify-content: center;
 }
-.max_guest{
+
+.max_guest {
     width: 100px;
     display: flex;
     height: inherit;
     flex-direction: column;
     justify-content: center;
 }
-.guest_icon{
+
+.guest_icon {
     height: inherit;
     width: inherit;
-    background: url("../images/group.PNG");
+    background: url("../images/icon_group.png");
     background-repeat: no-repeat;
     margin-left: 35px;
 }
-.guest_number h2{
+
+.guest_number h2 {
     font-size: 14px;
-    color:  #484848;
+    color: #484848;
     font-weight: normal;
 }
 
-.number_rooms{
+.number_rooms {
     width: 100px;
     display: flex;
     height: inherit;
     flex-direction: column;
     justify-content: center;
 }
-.rooms_icon{
+
+.rooms_icon {
     height: inherit;
     width: inherit;
-    background: url("../images/bed.PNG");
+    background: url("../images/icon_bed.png");
     background-repeat: no-repeat;
     margin-left: 35px;
 }
-.rooms_number h2{
+
+.rooms_number h2 {
     font-size: 14px;
-    color:  #484848;
+    color: #484848;
     font-weight: normal;
 }
 
-.number_bathrooms{
+.number_bathrooms {
     width: 100px;
     display: flex;
     height: inherit;
     flex-direction: column;
     justify-content: center;
 }
-.bathrooms_icon{
+
+.bathrooms_icon {
     height: inherit;
     width: inherit;
-    background: url("../images/shower.PNG");
+    background: url("../images/icon_bath.png");
     background-repeat: no-repeat;
     margin-left: 35px;
 }
-.bathrooms_number h2{
+
+.bathrooms_number h2 {
     font-size: 14px;
-    color:  #484848;
-    font-weight: normal;}
-.user{
+    color: #484848;
+    font-weight: normal;
+}
+
+.user {
     font-size: 14px;
     color: #484848;
     text-align: left;
     margin-top: 15px;
 }
-.description{
+
+.description {
     font-size: 14px;
     text-align: left;
     margin-top: 7px;
